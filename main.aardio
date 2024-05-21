@@ -1,0 +1,35 @@
+import win.ui;
+if(_ARGV[1]=="SETUP")
+{
+	var pth=io._exepath;
+	import win.reg;
+	var sh=win.reg("HKEY_CLASSES_ROOT\HideBatch\shell\open\command");
+	var ed=win.reg("HKEY_CLASSES_ROOT\HideBatch\shell\edit\command");
+	var ic=win.reg("HKEY_CLASSES_ROOT\HideBatch\DefaultIcon");
+	var dop=win.reg("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.hbt\OpenWithProgids");
+	
+	dop.setBinValue("HideBatch","");
+	
+	var opShell='"'+pth+'" "%1"';
+	var Defcon=pth+',0';
+	sh.setSzValue("",opShell);
+	ed.setSzValue("",'notepad "%1"');
+	ic.setSzValue("",Defcon);
+	win.msgbox("Please lauch HideBatch as the Default opener of the .hbt file. ","SETUP")
+}
+else if(_ARGV[1]) 
+{
+	import fsys.file;
+	var fin=fsys.file(_ARGV[1]);
+	var cmdline=fin.read(-1);
+	fin.close();
+	
+	import fsys;
+	WorkDIR=_ARGV[1];
+	WorkDIR=fsys.getParentDir(WorkDIR);
+	
+	import process.batch;
+	var batopt=process.batch(cmdline,,WorkDIR);
+	var batrs=batopt.read(-1);
+}
+else win.msgboxErr("No Batch file. ","ERROR");

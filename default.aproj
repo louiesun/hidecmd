@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project ver="10" name="hidecmd" libEmbed="true" icon="ConsoleToo.ico" ui="win" output="hidecmd.exe" CompanyName="louiesun" FileDescription="hidecmd" LegalCopyright="Copyleft(C) louiesun 2024" ProductName="hidecmd" InternalName="hidecmd" FileVersion="0.0.0.21" ProductVersion="0.0.0.21" publishDir="/dist/" dstrip="false" local="false" ignored="false">
+	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
+</project>
